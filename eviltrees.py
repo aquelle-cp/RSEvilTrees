@@ -17,7 +17,6 @@ def print_help():
     print('\tquit\t\t\texits program')
 
 # Entry - stores world number and time until tree (format [world] [time(mins)])
-# TODO: check if that world already has an entry; if it does, overwrite it
 def entry(cmd, trees):
     # Make sure both world and time are numbers
     if (not cmd[0].isdigit()) or (not cmd[1].isdigit()):
@@ -45,9 +44,11 @@ def show(trees):
         return
 
     # Clean the list of any trees older than 10 mins
-    for t in trees:
-        if t['time'] < datetime.datetime.now() - datetime.timedelta(minutes=10):
-            trees.remove(t)
+    # for t in trees:
+    #     if t['time'] < datetime.datetime.now() - datetime.timedelta(minutes=10):
+    #         trees.remove(t)\
+    if trees:
+        trees = [t for t in trees if t['time'] >= datetime.datetime.now() - datetime.timedelta(minutes=10)]
 
     sorted_trees = sorted(trees, key=lambda d: d['time'])
     for t in sorted_trees:
