@@ -7,7 +7,7 @@ import datetime
 # Delete any records with trees past 10 mins old
 # Let the user remove worlds that have been checked
 
-# Help - prints this help message
+# Help - prints the help message
 def print_help():
     print('commands:')
     print('\thelp\t\t\tprints this help message')
@@ -55,7 +55,7 @@ def show(trees):
         mins_til_tree = round((t['time'] - datetime.datetime.now()).total_seconds() / 60)
         print('w' + str(t['world']) + ' ' + str(mins_til_tree) + ' mins')
 
-# Action block
+## Action loop - parses the input command and executes the appropriate function
 trees = []
 cont = True
 while (cont):
